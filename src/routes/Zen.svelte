@@ -9,22 +9,7 @@
         id = ''
         if (params && params.id) {
           id = params.id;
-
-          loadZen();
         }
-    }
-
-    let zenDoc = {
-      id: '',
-      text: ''
-    }
-
-    const loadZen = () => {
-      $zen.forEach(doc => {
-        if (doc.id === id) {
-          zenDoc = doc;
-        }
-      });
     }
 </script>
 
@@ -36,9 +21,7 @@
   </style>
 </svelte:head>
 
-<div in:fade|local>
-
-<div class="container mx-auto flex flex-wrap">
+<div class="container mx-auto flex flex-wrap" in:fade|local>
   <h1
     class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800"
   >
@@ -53,12 +36,13 @@
     </div>
     <h2
       class="w-full my-2 text-2xl font-bold leading-tight text-center text-gray-800"
+      in:fade
     >
       Subtitle
     </h2>
 
   {#each $zen as doc}
-    <div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
+    <div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink" in:fade|local>
       <div
         class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow"
       >
@@ -81,27 +65,39 @@
   {/each}
   </div>
 {:else}
-  <ion-grid in:fade|local>
-    <ion-row>
-      <ion-col
-        size-xs="12"
-        offset-sm="1"
-        size-sm="10"
-        offset-md="2"
-        size-md="8"
-        offset-lg="3"
-        size-lg="6"
-        offset-xl="3"
-        size-xl="6"
-      >
-        <ion-card>
-          <ion-card-content>
-            <p>{zenDoc.text}</p>
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  {#each $zen as doc}
+    {#if doc.id === id}
+      <div class="flex flex-wrap" in:fade>
+        <div class="w-5/6 sm:w-1/2 p-6">
+          <h3 class="text-3xl text-gray-800 font-bold leading-none mb-3">
+            {doc.title}
+          </h3>
+          <p class="text-gray-600 mb-8">
+            {doc.text}
+          </p>
+          {#if doc.twitter}
+            <ion-button fill="clear" href="{doc.twitter}" target="_blank">
+              <ion-icon name="logo-twitter" />
+            </ion-button>
+          {/if}
+          {#if doc.facebook}
+            <ion-button fill="clear" href="{doc.facebook}" target="_blank">
+              <ion-icon name="logo-facebook" />
+            </ion-button>
+          {/if}
+          {#if doc.instagram}
+            <ion-button fill="clear" href="{doc.instagram}" target="_blank">
+              <ion-icon name="logo-instagram" />
+            </ion-button>
+          {/if}
+        </div>
+        <div class="w-full sm:w-1/2 p-6">
+          <img
+            alt="{doc.title}"
+            src="/collections/zen/{doc.id}/image.webp"
+          />
+        </div>
+      </div>
+    {/if}
+  {/each}
 {/if}
-
-</div>
