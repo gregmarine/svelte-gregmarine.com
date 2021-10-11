@@ -2,6 +2,8 @@
   import { fade } from 'svelte/transition';
   import { zen } from '../stores/stores.js';
 
+  import IndexCard from "../components/IndexCard.svelte";
+
     export let params = {};
 
     let id = '';
@@ -42,26 +44,33 @@
     </h2>
 
   {#each $zen as doc}
-    <div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink" in:fade|local>
-      <div
-        class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow"
+    <IndexCard>
+      <a
+        href="#/zen/{doc.id}"
+        class="flex flex-wrap no-underline hover:no-underline"
+        slot="title"
       >
-        <a
-          href="#/zen/{doc.id}"
-          class="flex flex-wrap no-underline hover:no-underline"
-        >
-          <p class="w-full text-gray-600 text-xs md:text-sm px-6">
-            {doc.text}
-          </p>
-          <div class="w-full font-bold text-xl text-gray-800 px-6">
-            
-          </div>
-          <p class="text-gray-800 text-base px-6 mb-5">
-            
-          </p>
-        </a>
-      </div>
-    </div>
+        <p class="w-full text-gray-600 text-l md:text-xl px-6 pt-6">
+          {doc.title}
+        </p>
+      </a>
+
+      <a
+        href="#/zen/{doc.id}"
+        class="flex flex-wrap no-underline hover:no-underline"
+        slot="content"
+      >
+        <p class="w-full text-gray-600 text-xs md:text-sm px-6 py-6">
+          {doc.text}
+        </p>
+        <div class="object-bottom px-6 pb-6">
+          <img
+            alt="{doc.title}"
+            src="/collections/zen/{doc.id}/image.webp"
+          />
+        </div>
+      </a>
+    </IndexCard>
   {/each}
   </div>
 {:else}
