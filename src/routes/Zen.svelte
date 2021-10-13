@@ -1,18 +1,29 @@
 <script>
   import { fade } from 'svelte/transition';
+  import xss from 'xss';
+  import marked from 'marked';
+
   import { zen } from '../stores/stores.js';
 
   import IndexCard from "../components/IndexCard.svelte";
 
-    export let params = {};
+  export let params = {};
 
-    let id = '';
-    $: {
-        id = ''
-        if (params && params.id) {
-          id = params.id;
-        }
-    }
+  let id = '';
+  $: {
+      id = ''
+      if (params && params.id) {
+        id = params.id;
+        getDocument();
+      }
+  }
+
+  let document = "";
+  const getDocument = async () => {
+    const response = await fetch(`/collections/zen/${id}/document.md`);
+    const data = await response.text();
+    document = marked(xss(data));
+  }
 </script>
 
 <svelte:head>
@@ -23,15 +34,16 @@
   </style>
 </svelte:head>
 
-<div class="container mx-auto flex flex-wrap" in:fade|local>
-  <h1
-    class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800"
-  >
-    Zen
-  </h1>
-</div>
-
 {#if id === ''}
+
+  <div class="container mx-auto flex flex-wrap" in:fade|local>
+    <h1
+      class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800"
+    >
+      Zen
+    </h1>
+  </div>
+
   <div class="container mx-auto flex flex-wrap pt-4 pb-12" in:fade|local>
     <div class="w-full mb-4">
       <div class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t" />
@@ -44,6 +56,7 @@
     </h2>
 
   {#each $zen as doc}
+
     <IndexCard>
       <a
         href="#/zen/{doc.id}"
@@ -71,34 +84,48 @@
         </div>
       </a>
     </IndexCard>
+
   {/each}
+
   </div>
+
 {:else}
+
   {#each $zen as doc}
+
     {#if doc.id === id}
+
+      <div class="container mx-auto flex flex-wrap" in:fade|local>
+        <h1
+          class="w-full my-2 text-3xl font-bold leading-tight text-center text-gray-800"
+        >
+          {doc.title}
+        </h1>
+        
+        <ion-buttons>
+        {#if doc.twitter}
+          <ion-button fill="clear" href="{doc.twitter}" target="_blank">
+            <ion-icon name="logo-twitter" />
+          </ion-button>
+        {/if}
+        {#if doc.facebook}
+          <ion-button fill="clear" href="{doc.facebook}" target="_blank">
+            <ion-icon name="logo-facebook" />
+          </ion-button>
+        {/if}
+        {#if doc.instagram}
+          <ion-button fill="clear" href="{doc.instagram}" target="_blank">
+            <ion-icon name="logo-instagram" />
+          </ion-button>
+        {/if}
+        </ion-buttons>
+      </div>
+
       <div class="flex flex-wrap" in:fade>
         <div class="w-5/6 sm:w-1/2 p-6">
-          <h3 class="text-3xl text-gray-800 font-bold leading-none mb-3">
-            {doc.title}
-          </h3>
           <p class="text-gray-600 mb-8">
             {doc.text}
           </p>
-          {#if doc.twitter}
-            <ion-button fill="clear" href="{doc.twitter}" target="_blank">
-              <ion-icon name="logo-twitter" />
-            </ion-button>
-          {/if}
-          {#if doc.facebook}
-            <ion-button fill="clear" href="{doc.facebook}" target="_blank">
-              <ion-icon name="logo-facebook" />
-            </ion-button>
-          {/if}
-          {#if doc.instagram}
-            <ion-button fill="clear" href="{doc.instagram}" target="_blank">
-              <ion-icon name="logo-instagram" />
-            </ion-button>
-          {/if}
         </div>
         <div class="w-full sm:w-1/2 p-6">
           <img
@@ -106,7 +133,14 @@
             src="/collections/zen/{doc.id}/image.webp"
           />
         </div>
+
+        <div class="w-full text-gray-600 p-6 space-y-6">
+          {@html document}
+        </div>
       </div>
+
     {/if}
+
   {/each}
+
 {/if}

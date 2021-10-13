@@ -1,33 +1,29 @@
 <script>
   import { fade } from 'svelte/transition';
+  import xss from 'xss';
+  import marked from 'marked';
+
   import { dadjokes } from '../stores/stores.js';
 
-    export let params = {};
+  import IndexCard from "../components/IndexCard.svelte";
 
-    let id = '';
-    $: {
-        id = ''
-        if (params && params.id) {
-          id = params.id;
+  export let params = {};
 
-          loadDadJoke();
-        }
-    }
+  let id = '';
+  $: {
+      id = ''
+      if (params && params.id) {
+        id = params.id;
+        //getDocument();
+      }
+  }
 
-    let dadjoke = {
-      id: '',
-      youtube: '',
-      setup: '',
-      punchline: ''
-    }
-
-    const loadDadJoke = () => {
-      $dadjokes.forEach(joke => {
-        if (joke.id === id) {
-          dadjoke = joke;
-        }
-      });
-    }
+  // let document = "";
+  /* const getDocument = async () => {
+    const response = await fetch(`/collections/zen/${id}/document.md`);
+    const data = await response.text();
+    document = marked(xss(data));
+  } */
 </script>
 
 <svelte:head>
@@ -38,85 +34,95 @@
   </style>
 </svelte:head>
 
-<div in:fade|local>
-
-<div class="container mx-auto flex flex-wrap">
-  <h1
-    class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800"
-  >
-    Dad Jokes
-  </h1>
-</div>
-
 {#if id === ''}
+
+  <div class="container mx-auto flex flex-wrap" in:fade|local>
+    <h1
+      class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800"
+    >
+      Dad Jokes
+    </h1>
+  </div>
+
   <div class="container mx-auto flex flex-wrap pt-4 pb-12" in:fade|local>
     <div class="w-full mb-4">
       <div class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t" />
     </div>
     <h2
       class="w-full my-2 text-2xl font-bold leading-tight text-center text-gray-800"
+      in:fade
     >
       Currated List of Eye Rolling Humor
     </h2>
 
-  {#each $dadjokes as dadjoke}
-    <div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
-      <div
-        class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow"
-      >
-        <a
-          href="#/dadjokes/{dadjoke.id}"
-          class="flex flex-wrap no-underline hover:no-underline"
-        >
-          <p class="w-full text-gray-600 text-xs md:text-sm px-6">
-            {dadjoke.id}
-          </p>
-          <div class="w-full font-bold text-xl text-gray-800 px-6">
-            {dadjoke.setup}
-          </div>
-          <p class="text-gray-800 text-base px-6 mb-5">
-            {dadjoke.punchline}
-          </p>
-        </a>
-      </div>
-    </div>
-  {/each}
-  </div>
-{:else}
-  <ion-grid in:fade|local>
-    <ion-row>
-      <ion-col
-        size-xs="12"
-        offset-sm="1"
-        size-sm="10"
-        offset-md="2"
-        size-md="8"
-        offset-lg="3"
-        size-lg="6"
-        offset-xl="3"
-        size-xl="6"
-      >
-        <ion-card>
-          <ion-card-header>
-            <ion-card-title>
-              {dadjoke.setup}
-            </ion-card-title>
-            <ion-card-subtitle>
-              {dadjoke.punchline}
-            </ion-card-subtitle>
-          </ion-card-header>
-          <ion-card-content>
-            <div class="embed-container">
-              <iframe src="https://www.youtube.com/embed/{dadjoke.youtube}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-{/if}
+  {#each $dadjokes as doc}
 
-</div>
+    <IndexCard>
+      <a
+        href="#/dadjokes/{doc.id}"
+        class="flex flex-wrap no-underline hover:no-underline"
+        slot="title"
+      >
+        <p class="w-full text-gray-600 text-l md:text-xl px-6 pt-6">
+          {doc.title}
+        </p>
+      </a>
+
+      <a
+        href="#/dadjokes/{doc.id}"
+        class="flex flex-wrap no-underline hover:no-underline"
+        slot="content"
+      >
+        <p class="w-full text-gray-600 text-xs md:text-sm px-6 py-6">
+          {doc.setup}
+        </p>
+        <p class="w-full text-gray-600 text-xs md:text-sm px-6 py-6">
+          {doc.punchline}
+        </p>
+      </a>
+    </IndexCard>
+
+  {/each}
+
+  </div>
+
+{:else}
+
+  {#each $dadjokes as doc}
+
+    {#if doc.id === id}
+
+      <div class="container mx-auto flex flex-wrap" in:fade|local>
+        <h1
+          class="w-full my-2 text-3xl font-bold leading-tight text-center text-gray-800"
+        >
+          {doc.title}
+        </h1>
+      </div>
+
+      <div class="w-full flex flex-col justify-center items-center">
+      <div class="w-full xl:w-1/2 md:w-4/6 sm:w-5/6" in:fade>
+        <div class="w-5/6 sm:w-1/2 p-6">
+          <p class="text-gray-600 mb-8">
+            {doc.setup}
+          </p>
+        </div>
+        <div class="w-5/6 sm:w-1/2 p-6">
+          <p class="text-gray-600 mb-8">
+            {doc.punchline}
+          </p>
+        </div>
+        <div class="w-full embed-container">
+          <iframe src="https://www.youtube.com/embed/{doc.youtube}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+      </div>
+      </div>
+
+    {/if}
+
+  {/each}
+
+{/if}
 
 <style>
   .embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }

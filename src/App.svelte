@@ -1,6 +1,12 @@
 <script>
 	import Router from 'svelte-spa-router';
 	import routes from './routes';
+
+	let content;
+
+	const routeLoaded = () => {
+		if(content && content.scrollToTop) content.scrollToTop();
+	};
 </script>
 
 <ion-app>
@@ -14,7 +20,7 @@
 		</ion-toolbar>
 	</ion-header>
 
-	<ion-content class="ion-padding">
-		<Router {routes} />
+	<ion-content class="ion-padding" bind:this={content}>
+		<Router {routes} on:routeLoaded={routeLoaded} />
 	</ion-content>
 </ion-app>
