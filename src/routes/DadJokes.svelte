@@ -1,11 +1,7 @@
 <script>
   import { fade } from 'svelte/transition';
-  import xss from 'xss';
-  import marked from 'marked';
 
   import { dadjokes } from '../stores/stores.js';
-
-  import IndexCard from "../components/IndexCard.svelte";
 
   export let params = {};
 
@@ -49,7 +45,7 @@
       <div class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t" />
     </div>
     <h2
-      class="w-full my-2 text-2xl font-bold leading-tight text-center text-gray-800"
+      class="w-full my-2 text-xl lg:text-2xl font-bold leading-tight text-center text-gray-800"
       in:fade
     >
       Currated List of Eye Rolling Humor
@@ -57,30 +53,34 @@
 
   {#each $dadjokes as doc}
 
-    <IndexCard>
-      <a
-        href="#/dadjokes/{doc.id}"
-        class="flex flex-wrap no-underline hover:no-underline"
-        slot="title"
+    <article class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
+    
+      <div
+        class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow"
       >
-        <p class="w-full text-gray-600 text-l md:text-xl px-6 pt-6">
-          {doc.title}
-        </p>
-      </a>
-
-      <a
-        href="#/dadjokes/{doc.id}"
-        class="flex flex-wrap no-underline hover:no-underline"
-        slot="content"
-      >
-        <p class="w-full text-gray-600 text-xs md:text-sm px-6 py-6">
-          {doc.setup}
-        </p>
-        <p class="w-full text-gray-600 text-xs md:text-sm px-6 py-6">
-          {doc.punchline}
-        </p>
-      </a>
-    </IndexCard>
+        <a
+          href="#/dadjokes/{doc.id}"
+          class="flex flex-wrap no-underline hover:no-underline"
+        >
+          <p class="w-full text-gray-600 text-l md:text-xl px-6 pt-6">
+            {doc.title}
+          </p>
+        </a>
+    
+        <a
+          href="#/dadjokes/{doc.id}"
+          class="flex flex-wrap no-underline hover:no-underline"
+        >
+          <p class="w-full text-gray-600 text-xs md:text-sm px-6 py-6">
+            {doc.setup}
+          </p>
+          <p class="w-full text-gray-600 text-xs md:text-sm px-6 py-6">
+            {doc.punchline}
+          </p>
+        </a>
+      </div>
+      
+    </article>
 
   {/each}
 
@@ -101,21 +101,27 @@
       </div>
 
       <div class="w-full flex flex-col justify-center items-center">
-      <div class="w-full xl:w-1/2 md:w-4/6 sm:w-5/6" in:fade>
-        <div class="w-5/6 sm:w-1/2 p-6">
-          <p class="text-gray-600 mb-8">
-            {doc.setup}
-          </p>
+        <div class="w-full xl:w-1/2 md:w-4/6 sm:w-5/6" in:fade>
+          <div
+            class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow"
+          >
+  
+            <div class="w-5/6 sm:w-1/2 p-6">
+              <p class="text-gray-600 mb-8">
+                {doc.setup}
+              </p>
+            </div>
+            <div class="w-5/6 sm:w-1/2 p-6">
+              <p class="text-gray-600 mb-8">
+                {doc.punchline}
+              </p>
+            </div>
+            <div class="w-full embed-container">
+              <iframe src="https://www.youtube.com/embed/{doc.youtube}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+
+          </div>
         </div>
-        <div class="w-5/6 sm:w-1/2 p-6">
-          <p class="text-gray-600 mb-8">
-            {doc.punchline}
-          </p>
-        </div>
-        <div class="w-full embed-container">
-          <iframe src="https://www.youtube.com/embed/{doc.youtube}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-      </div>
       </div>
 
     {/if}
@@ -125,5 +131,5 @@
 {/if}
 
 <style>
-  .embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+  .embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; padding: 1em; }
 </style>

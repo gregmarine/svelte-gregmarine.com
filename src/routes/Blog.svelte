@@ -3,7 +3,7 @@
   import xss from 'xss';
   import marked from 'marked';
 
-  import { zen } from '../stores/stores.js';
+  import { blog } from '../stores/stores.js';
 
   export let params = {};
 
@@ -18,7 +18,7 @@
 
   let document = "";
   const getDocument = async () => {
-    const response = await fetch(`/collections/zen/${id}/document.md`);
+    const response = await fetch(`/collections/blog/${id}/document.md`);
     const data = await response.text();
     document = marked(xss(data));
   }
@@ -38,7 +38,7 @@
     <h1
       class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800"
     >
-      Zen
+      Blog
     </h1>
   </div>
 
@@ -50,10 +50,10 @@
       class="w-full my-2 text-xl lg:text-2xl font-bold leading-tight text-center text-gray-800"
       in:fade
     >
-      Postive Motivation for a Troubled World
+      Collection of My Musings
     </h2>
 
-  {#each $zen as doc}
+  {#each $blog as doc}
 
       <article class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
 
@@ -61,7 +61,7 @@
             class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow"
           >
             <a
-              href="#/zen/{doc.id}"
+              href="#/blog/{doc.id}"
               class="flex flex-wrap no-underline hover:no-underline"
             >
               <p class="w-full text-gray-600 text-l md:text-xl px-6 pt-6">
@@ -70,18 +70,12 @@
             </a>
         
             <a
-              href="#/zen/{doc.id}"
+              href="#/blog/{doc.id}"
               class="flex flex-wrap no-underline hover:no-underline"
             >
               <p class="w-full text-gray-600 text-xs md:text-sm px-6 py-6">
                 {doc.text}
               </p>
-              <div class="object-bottom px-6 pb-6">
-                <img
-                  alt="{doc.title}"
-                  src="/collections/zen/{doc.id}/image.webp"
-                />
-              </div>
             </a>
           </div>
 
@@ -93,7 +87,7 @@
 
 {:else}
 
-  {#each $zen as doc}
+  {#each $blog as doc}
 
     {#if doc.id === id}
 
@@ -103,42 +97,13 @@
         >
           {doc.title}
         </h1>
-        
-        <div class="w-full flex flex-col justify-center items-center">
-          <ion-buttons>
-          {#if doc.twitter}
-            <ion-button fill="clear" href="{doc.twitter}" target="_blank">
-              <ion-icon name="logo-twitter" />
-            </ion-button>
-          {/if}
-          {#if doc.facebook}
-            <ion-button fill="clear" href="{doc.facebook}" target="_blank">
-              <ion-icon name="logo-facebook" />
-            </ion-button>
-          {/if}
-          {#if doc.instagram}
-            <ion-button fill="clear" href="{doc.instagram}" target="_blank">
-              <ion-icon name="logo-instagram" />
-            </ion-button>
-          {/if}
-          </ion-buttons>
-        </div>
       </div>
 
       <div class="w-full flex flex-col justify-center items-center">
         <div class="flex flex-wrap w-full xl:w-1/2 md:w-4/6 sm:w-5/6" in:fade>
-          <div class="w-5/6 sm:w-1/2 p-6">
-            <p class="text-gray-600 mb-8">
-              {doc.text}
-            </p>
-          </div>
-          <div class="w-full sm:w-1/2 p-6">
-            <img
-              alt="{doc.title}"
-              src="/collections/zen/{doc.id}/image.webp"
-            />
-          </div>
-
+          <p class="w-full text-gray-600 p-6 space-y-6">
+            {doc.text}
+          </p>
           <div class="w-full text-gray-600 p-6 space-y-6">
             {@html document}
           </div>

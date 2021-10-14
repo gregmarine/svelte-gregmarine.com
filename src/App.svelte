@@ -16,6 +16,7 @@
 				<ion-button href="#/">Home</ion-button>
 				<ion-button href="#/zen">Zen</ion-button>
 				<ion-button href="#/dadjokes">Dad Jokes</ion-button>
+				<ion-button href="#/blog">Blog</ion-button>
 			</ion-buttons>
 		</ion-toolbar>
 	</ion-header>

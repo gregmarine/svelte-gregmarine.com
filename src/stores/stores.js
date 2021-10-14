@@ -25,3 +25,16 @@ export const zen = readable([], function (set) {
 
   return () => {};
 });
+
+export const blog = readable([], function (set) {
+  const fetchBlogIndex = async () => {
+    const response = await fetch('collections/blog/index.json');
+    const data = await response.json();
+    
+    set(data);
+  }
+
+  fetchBlogIndex();
+
+  return () => {};
+});
