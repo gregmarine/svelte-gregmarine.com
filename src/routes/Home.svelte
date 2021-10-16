@@ -1,6 +1,6 @@
 <script>
   import { fade } from 'svelte/transition';
-  import { dadjokes } from "../stores/stores.js";
+  import { zen, dadjokes, blog } from "../stores/stores.js";
 </script>
 <svelte:head>
   <style>
@@ -37,9 +37,9 @@
       <div
         class="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left"
       >
-        <p class="uppercase tracking-loose w-full">Welcome!</p>
+        <p class="uppercase tracking-loose w-full">Hello There!</p>
         <h1 class="my-4 text-5xl font-bold leading-tight">
-          Greg Marine
+          I'm Greg Marine
         </h1>
         <p class="leading-normal text-2xl mb-8">
           Zen Technologist 🧘‍♂️ Teller of Dad Jokes 🤣 Motivating a Mentally
@@ -156,6 +156,30 @@
           </div>
         </div>
       </div>
+
+      <div class="container mx-auto flex flex-wrap pt-4 pb-12">
+
+      {#each $zen.slice(0, 3) as zenDoc}
+        <div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
+          <div
+            class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow"
+          >
+            <a
+              href="#/zen/{zenDoc.id}"
+              class="flex flex-wrap no-underline hover:no-underline"
+            >
+              <div class="w-full font-bold text-xl text-gray-800 px-6">
+                {zenDoc.title}
+              </div>
+              <p class="text-gray-800 text-base px-6 mb-5">
+                {zenDoc.text}
+              </p>
+            </a>
+          </div>
+        </div>
+      {/each}
+
+      </div>
     </div>
   </section>
 
@@ -197,6 +221,49 @@
               </div>
               <p class="text-gray-800 text-base px-6 mb-5">
                 {dadjoke.punchline}
+              </p>
+            </a>
+          </div>
+        </div>
+      {/each}
+    </div>
+  </section>
+
+  <!--Blog-->
+  <section class="bg-white border-b py-8">
+    <div class="container mx-auto flex flex-wrap pt-4 pb-12">
+      <a
+          href="#/dadjokes"
+          class="w-full no-underline hover:no-underline">
+        <h1
+          class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800"
+        >
+          Blog
+        </h1>
+      </a>
+      <div class="w-full mb-4">
+        <div class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t" />
+      </div>
+      <h2
+        class="w-full my-2 text-2xl font-bold leading-tight text-center text-gray-800"
+      >
+        Collection of My Musings
+      </h2>
+
+      {#each $blog.slice(0, 3) as blog}
+        <div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
+          <div
+            class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow"
+          >
+            <a
+              href="#/blog/{blog.id}"
+              class="flex flex-wrap no-underline hover:no-underline"
+            >
+              <div class="w-full font-bold text-xl text-gray-800 px-6">
+                {blog.title}
+              </div>
+              <p class="text-gray-800 text-base px-6 mb-5">
+                {blog.text}
               </p>
             </a>
           </div>
