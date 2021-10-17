@@ -1,5 +1,57 @@
 [
   {
+    "id": "balance",
+    "published": "2021-10-11",
+    "title": "Balance",
+    "author": "Greg Marine",
+    "tags": [
+      "balance",
+      "life",
+      "personal",
+      "zen"
+    ],
+    "text": "For thousands of years, mankind has been contemplating and philosophizing, what I have come to accept as, the importance balance plays in life. In my own life, this has come in many forms. From compensation for work I do for an employer to faith-based organized religion, I have always had a need to find some sort of balance. This has been difficult to achieve at times, however. Sometimes outside sources such as world events can effect my balance. Other times, it can simply be my own inner thoughts. The former is out of my own control. However, the latter is quite within my grasp. To help with inner thoughts, I look to some seemingly odd, and very small, places."
+  },
+  {
+    "id": "world-showcase-movie-series",
+    "published": "2021-01-23",
+    "title": "World Showcase Movie Series",
+    "author": "Greg Marine",
+    "tags": [
+      "disney",
+      "Walt Disney World Resort",
+      "Epcot",
+      "World Showcase"
+    ],
+    "text": "As a huge fan and frequent guest at the Walt Disney World Resort in central Florida, I was quite broken hearted when the gates closed on March 15, 2020. The months following brought news of Cast Member layoffs and when they reopened in July that year, there remained unanswered questions about when all of the magic would return. Stage shows, parades, and night time extravaganzas were all indefinitely postponed or completely canceled. Since I was not able to visit the most Magical Place on Earth between March and September in 2020, I had to find new ways to enjoy the magic at home. Thankfully, just before the pandemic took over the world, [Disney+](https://www.disneyplus.com/) was introduced. So, one of the ways I could enjoy the magic at home was what I call the World Showcase Movie Series!"
+  },
+  {
+    "id": "when-to-give-up",
+    "published": "2020-12-31",
+    "title": "When to Give Up",
+    "author": "Greg Marine",
+    "tags": [
+      "childhood",
+      "family",
+      "choices",
+      "stories"
+    ],
+    "text": "Every single day I am faced with choices. The very first one is whether or not to get up once I wake. The last decision is typically when to go to bed. I can safely say, however, that the most difficult choice I face daily is when to give up. As a software developer, this will sometimes mean when I need to give up on a problem and take a break. But how does that relate to other circumstances?"
+  },
+  {
+    "id": "common-cubed",
+    "published": "2020-10-07",
+    "title": "Common Cubed",
+    "author": "Greg Marine",
+    "tags": [
+      "opinion",
+      "advice",
+      "personal",
+      "life lessons"
+    ],
+    "text": "Over the years I have learned what is and isn't important in my life. With a global pandemic that hit home personally, as well as some new career moves I did not expect, 2020 has been a great reminder of what I should make my priorities. For best way to be able to focus on those important priorities, I look to Commonsense, Common Courtesy, and Common Decency. The \"Common Cubed\" always leads me to the inevitability of discovering the root of all things important."
+  },
+  {
     "id": "great-big-beautiful-tomorrow",
     "published": "2020-08-26",
     "title": "There's a Great Big Beautiful Tomorrow",
