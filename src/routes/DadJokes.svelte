@@ -22,14 +22,6 @@
   } */
 </script>
 
-<svelte:head>
-  <style>
-    .gradient {
-      background: linear-gradient(90deg, #d53369 0%, #daae51 100%);
-    }
-  </style>
-</svelte:head>
-
 {#if id === ''}
 
   <div class="container mx-auto flex flex-wrap" in:fade|local>

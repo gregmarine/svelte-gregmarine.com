@@ -9,6 +9,16 @@
 	};
 </script>
 
+<style global>
+  @tailwind base;
+  @tailwind components;
+  @tailwind utilities;
+
+	.gradient {
+		background: linear-gradient(90deg, rgb(6, 95, 36) 0%, rgb(81, 218, 88) 100%);
+	}
+</style>
+
 <ion-app>
 	<ion-header>
 		<ion-toolbar>
