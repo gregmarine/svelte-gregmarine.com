@@ -1,6 +1,8 @@
 <script>
   import { fade } from 'svelte/transition';
-  import { zen, dadjokes, blog } from "../stores/stores.js";
+  import { pageTitle, zen, dadjokes, blog } from "../stores/stores.js";
+
+  pageTitle.set("Greg Marine");
 </script>
 
 <div in:fade|local>

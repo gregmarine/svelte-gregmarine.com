@@ -1,4 +1,6 @@
-import { readable } from 'svelte/store';
+import { readable, writable } from 'svelte/store';
+
+export const pageTitle = writable('Home');
 
 export const dadjokes = readable([], function (set) {
   const fetchDadJokeIndex = async () => {

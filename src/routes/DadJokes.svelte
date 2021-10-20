@@ -1,7 +1,9 @@
 <script>
   import { fade } from 'svelte/transition';
 
-  import { dadjokes } from '../stores/stores.js';
+  import { pageTitle, dadjokes } from '../stores/stores.js';
+
+  pageTitle.set("Dad Jokes");
 
   export let params = {};
 

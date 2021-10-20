@@ -3,7 +3,9 @@
   import xss from 'xss';
   import marked from 'marked';
 
-  import { zen } from '../stores/stores.js';
+  import { pageTitle, zen } from '../stores/stores.js';
+
+  pageTitle.set("Zen");
 
   export let params = {};
 
