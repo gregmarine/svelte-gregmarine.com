@@ -28,7 +28,7 @@
 
   <div class="container mx-auto flex flex-wrap" in:fade|local>
     <h1
-      class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800"
+      class="w-full my-2 text-5xl font-bold leading-tight text-center"
     >
       Dad Jokes
     </h1>
@@ -39,7 +39,7 @@
       <div class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t" />
     </div>
     <h2
-      class="w-full my-2 text-xl lg:text-2xl font-bold leading-tight text-center text-gray-800"
+      class="w-full my-2 text-xl lg:text-2xl font-bold leading-tight text-center"
       in:fade
     >
       Currated List of Eye Rolling Humor
@@ -47,7 +47,7 @@
 
   {#each $dadjokes as doc}
 
-    <article class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
+    <article class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink" in:fade|local>
     
       <div
         class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow"
@@ -88,7 +88,7 @@
 
       <div class="container mx-auto flex flex-wrap" in:fade|local>
         <h1
-          class="w-full my-2 text-3xl font-bold leading-tight text-center text-gray-800"
+          class="w-full my-2 text-3xl font-bold leading-tight text-center"
         >
           {doc.title}
         </h1>

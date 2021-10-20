@@ -1,5 +1,7 @@
 <script>
   import { fade } from 'svelte/transition';
+	import { link } from 'svelte-spa-router';
+
   import { pageTitle, zen, dadjokes, blog } from "../stores/stores.js";
 
   pageTitle.set("Greg Marine");
@@ -81,8 +83,8 @@
   <section class="bg-white border-b py-8">
     <div class="container max-w-5xl mx-auto m-8">
       <a
-          href="#/zen"
-          class="w-full no-underline hover:no-underline">
+          href="/zen"
+          class="w-full no-underline hover:no-underline" use:link>
         <h1
           class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800"
         >
@@ -144,8 +146,9 @@
             class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow"
           >
             <a
-              href="#/zen/{zenDoc.id}"
+              href="/zen/{zenDoc.id}"
               class="flex flex-wrap no-underline hover:no-underline"
+              use:link
             >
               <div class="w-full font-bold text-xl text-gray-800 px-6">
                 {zenDoc.title}
@@ -166,8 +169,8 @@
   <section class="bg-white border-b py-8">
     <div class="container mx-auto flex flex-wrap pt-4 pb-12">
       <a
-          href="#/dadjokes"
-          class="w-full no-underline hover:no-underline">
+          href="/dadjokes"
+          class="w-full no-underline hover:no-underline" use:link>
         <h1
           class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800"
         >
@@ -189,8 +192,9 @@
             class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow"
           >
             <a
-              href="#/dadjokes/{dadjoke.id}"
+              href="/dadjokes/{dadjoke.id}"
               class="flex flex-wrap no-underline hover:no-underline"
+              use:link
             >
               <p class="w-full text-gray-600 text-xs md:text-sm px-6">
                 {dadjoke.id}
@@ -212,8 +216,8 @@
   <section class="bg-white border-b py-8">
     <div class="container mx-auto flex flex-wrap pt-4 pb-12">
       <a
-          href="#/dadjokes"
-          class="w-full no-underline hover:no-underline">
+          href="/blog"
+          class="w-full no-underline hover:no-underline" use:link>
         <h1
           class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800"
         >
@@ -235,8 +239,9 @@
             class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow"
           >
             <a
-              href="#/blog/{blog.id}"
+              href="/blog/{blog.id}"
               class="flex flex-wrap no-underline hover:no-underline"
+              use:link
             >
               <div class="w-full font-bold text-xl text-gray-800 px-6">
                 {blog.title}

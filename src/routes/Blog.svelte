@@ -30,7 +30,7 @@
 
   <div class="container mx-auto flex flex-wrap" in:fade|local>
     <h1
-      class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800"
+      class="w-full my-2 text-5xl font-bold leading-tight text-center"
     >
       Blog
     </h1>
@@ -41,7 +41,7 @@
       <div class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t" />
     </div>
     <h2
-      class="w-full my-2 text-xl lg:text-2xl font-bold leading-tight text-center text-gray-800"
+      class="w-full my-2 text-xl lg:text-2xl font-bold leading-tight text-center"
       in:fade
     >
       Collection of My Musings
@@ -49,7 +49,7 @@
 
   {#each $blog as doc}
 
-      <article class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
+      <article class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink" in:fade|local>
 
           <div
             class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow"
@@ -95,10 +95,10 @@
 
       <div class="w-full flex flex-col justify-center items-center">
         <div class="flex flex-wrap w-full xl:w-1/2 md:w-4/6 sm:w-5/6" in:fade>
-          <p class="w-full text-gray-600 p-6 space-y-6">
+          <p class="w-full p-6 space-y-6">
             {doc.text}
           </p>
-          <div class="w-full text-gray-600 p-6 space-y-6">
+          <div class="w-full p-6 space-y-6">
             {@html document}
           </div>
         </div>

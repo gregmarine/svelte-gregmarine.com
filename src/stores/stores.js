@@ -40,3 +40,16 @@ export const blog = readable([], function (set) {
 
   return () => {};
 });
+
+export const recipes = readable([], function (set) {
+  const fetchRecipesIndex = async () => {
+    const response = await fetch('collections/recipes/index.json');
+    const data = await response.json();
+    
+    set(data);
+  }
+
+  fetchRecipesIndex();
+
+  return () => {};
+});
