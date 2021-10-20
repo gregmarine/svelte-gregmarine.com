@@ -8,32 +8,38 @@
   const toggleMenu = () => {
     showMenu = !showMenu;
   }
+
+  const menuItems = [
+    {
+      name: 'Home',
+      path: '/'
+    },
+    {
+      name: 'Zen',
+      path: '/zen'
+    },
+    {
+      name: 'Dad Jokes',
+      path: '/dadjokes'
+    },
+    {
+      name: 'Blog',
+      path: '/blog'
+    }
+  ];
 </script>
 
 <!-- Menu -->
 {#if showMenu}
 <div class="py-4 fixed right-0 bottom-16" transition:fade>
   <ul class="menu py-3 shadow-lg bg-base-100 rounded-box">
+    {#each menuItems as item}
     <li>
-      <a href="/" on:click={toggleMenu} use:link>
-				Home
-			</a>
-    </li> 
-    <li>
-      <a href="/zen" on:click={toggleMenu} use:link>
-				Zen
-			</a>
-    </li> 
-    <li>
-      <a href="/dadjokes" on:click={toggleMenu} use:link>
-				Dad Jokes
-			</a>
-    </li> 
-    <li>
-      <a href="/blog" on:click={toggleMenu} use:link>
-				Blog
+      <a href={item.path} on:click={toggleMenu} use:link>
+				{item.name}
 			</a>
     </li>
+    {/each}
   </ul>
 </div>
 {/if}
@@ -47,18 +53,11 @@
 	</div> 
 	<div class="hidden px-2 mx-2 navbar-center md:flex">
 		<div class="flex items-stretch">
-			<a href="/" class="btn btn-ghost btn-sm rounded-btn" use:link>
-				Home
+      {#each menuItems as item}
+      <a href={item.path} class="btn btn-ghost btn-sm rounded-btn" use:link>
+				{item.name}
 			</a>
-			<a href="/zen" class="btn btn-ghost btn-sm rounded-btn" use:link>
-				Zen
-			</a>
-			<a href="/dadjokes" class="btn btn-ghost btn-sm rounded-btn" use:link>
-				Dad Jokes
-			</a>
-			<a href="/blog" class="btn btn-ghost btn-sm rounded-btn" use:link>
-				Blog
-			</a>
+      {/each}
 		</div>
 	</div> 
 	<div class="navbar-end">
