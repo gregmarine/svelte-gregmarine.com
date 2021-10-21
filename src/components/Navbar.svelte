@@ -25,6 +25,10 @@
     {
       name: 'Blog',
       path: '/blog'
+    },
+    {
+      name: 'Recipes',
+      path: '/recipes'
     }
   ];
 </script>
