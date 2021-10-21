@@ -87,7 +87,7 @@
 
       <div class="container mx-auto flex flex-wrap" in:fade|local>
         <h1
-          class="w-full my-2 text-3xl font-bold leading-tight text-center text-gray-800"
+          class="w-full my-2 text-3xl font-bold leading-tight text-center"
         >
           {doc.title}
         </h1>
