@@ -1,21 +1,22 @@
 <script>
-  import { fade } from 'svelte/transition';
-  import xss from 'xss';
-  import marked from 'marked';
+  import { fade } from "svelte/transition";
+  import { link } from "svelte-spa-router";
+  import xss from "xss";
+  import marked from "marked";
 
-  import { pageTitle, blog } from '../stores/stores.js';
+  import { pageTitle, blog } from "../stores/stores.js";
 
   pageTitle.set("Blog");
 
   export let params = {};
 
-  let id = '';
+  let id = "";
   $: {
-      id = ''
-      if (params && params.id) {
-        id = params.id;
-        getDocument();
-      }
+    id = "";
+    if (params && params.id) {
+      id = params.id;
+      getDocument();
+    }
   }
 
   let document = "";
@@ -23,15 +24,12 @@
     const response = await fetch(`/collections/blog/${id}/document.md`);
     const data = await response.text();
     document = marked(xss(data));
-  }
+  };
 </script>
 
-{#if id === ''}
-
+{#if id === ""}
   <div class="container mx-auto flex flex-wrap lg:pt-24" in:fade|local>
-    <h1
-      class="w-full my-2 text-5xl font-bold leading-tight text-center"
-    >
+    <h1 class="w-full my-2 text-5xl font-bold leading-tight text-center">
       Blog
     </h1>
   </div>
@@ -47,48 +45,42 @@
       Collection of My Musings
     </h2>
 
-  {#each $blog as doc}
-
-      <article class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink" in:fade|local>
-
-          <div
-            class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow"
-          >
-            <a
-              href="#/blog/{doc.id}"
-              class="flex flex-wrap no-underline hover:no-underline"
-            >
-              <p class="w-full text-gray-600 text-l md:text-xl px-6 pt-6">
-                {doc.title}
-              </p>
-            </a>
-        
-            <a
-              href="#/blog/{doc.id}"
-              class="flex flex-wrap no-underline hover:no-underline"
-            >
-              <p class="w-full text-gray-600 text-xs md:text-sm px-6 py-6">
-                {doc.text}
-              </p>
-            </a>
-          </div>
-
-      </article>
-
-  {/each}
-
-  </div>
-
-{:else}
-
-  {#each $blog as doc}
-
-    {#if doc.id === id}
-
-      <div class="container mx-auto flex flex-wrap" in:fade|local>
-        <h1
-          class="w-full my-2 text-3xl font-bold leading-tight text-center"
+    {#each $blog as doc}
+      <article
+        class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink"
+        in:fade|local
+      >
+        <div
+          class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow"
         >
+          <a
+            href="/blog/{doc.id}"
+            class="flex flex-wrap no-underline hover:no-underline"
+            use:link
+          >
+            <p class="w-full text-gray-600 text-l md:text-xl px-6 pt-6">
+              {doc.title}
+            </p>
+          </a>
+
+          <a
+            href="/blog/{doc.id}"
+            class="flex flex-wrap no-underline hover:no-underline"
+            use:link
+          >
+            <p class="w-full text-gray-600 text-xs md:text-sm px-6 py-6">
+              {doc.text}
+            </p>
+          </a>
+        </div>
+      </article>
+    {/each}
+  </div>
+{:else}
+  {#each $blog as doc}
+    {#if doc.id === id}
+      <div class="container mx-auto flex flex-wrap" in:fade|local>
+        <h1 class="w-full my-2 text-3xl font-bold leading-tight text-center">
           {doc.title}
         </h1>
       </div>
@@ -103,9 +95,6 @@
           </div>
         </div>
       </div>
-
     {/if}
-
   {/each}
-
 {/if}

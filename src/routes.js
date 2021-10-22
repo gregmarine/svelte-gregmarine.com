@@ -10,7 +10,7 @@ export default {
     '/zen/:id?': Zen,
     '/dadjokes/:id?': DadJokes,
     '/blog/:id?': Blog,
-    '/recipes/:id?': Recipes,
+    '/recipes/:id?/:tab?': Recipes,
     // The catch-all route must always be last
     '*': NotFound
 };
