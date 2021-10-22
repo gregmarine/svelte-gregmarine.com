@@ -28,7 +28,7 @@
 
 {#if id === ''}
 
-  <div class="container mx-auto flex flex-wrap" in:fade|local>
+  <div class="container mx-auto flex flex-wrap lg:pt-24" in:fade|local>
     <h1
       class="w-full my-2 text-5xl font-bold leading-tight text-center"
     >

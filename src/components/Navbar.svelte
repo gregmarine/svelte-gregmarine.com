@@ -49,7 +49,7 @@
 {/if}
 
 <!-- Navbar -->
-<div class="navbar flex-none mb-2 shadow-lg bg-neutral text-neutral-content rounded-box w-full fixed bottom-0 top-auto lg:bottom-auto lg:top-0">
+<div class="navbar flex-none shadow-lg bg-neutral text-neutral-content rounded-box w-full fixed bottom-0 top-auto lg:bottom-auto lg:top-0">
 	<div class="px-2 mx-2 navbar-start">
 		<span class="text-lg font-bold">
 			{ $pageTitle }
