@@ -81,6 +81,12 @@
             <p class="w-full text-gray-600 text-xs md:text-sm px-6 py-6">
               {doc.text}
             </p>
+            <div class="object-bottom px-6 pb-6">
+              <img
+                alt={doc.title}
+                src="/collections/recipes/{doc.id}/image.webp"
+              />
+            </div>
           </a>
         </div>
       </article>
@@ -123,9 +129,24 @@
           </div>
 
           {#if tab === "overview"}
-            <p class="w-full p-6 space-y-6">
-              {doc.text}
-            </p>
+            <div class="w-full flex flex-col justify-center items-center">
+              <div
+                class="flex flex-wrap w-full xl:w-1/2 md:w-4/6 sm:w-5/6"
+                in:fade
+              >
+                <div class="w-5/6 sm:w-1/2 p-6">
+                  <p class="mb-8">
+                    {doc.text}
+                  </p>
+                </div>
+                <div class="w-full sm:w-1/2 p-6">
+                  <img
+                    alt={doc.title}
+                    src="/collections/recipes/{doc.id}/image.webp"
+                  />
+                </div>
+              </div>
+            </div>
           {:else}
             <div class="w-full p-6 space-y-6">
               {@html document}
