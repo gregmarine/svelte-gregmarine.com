@@ -18,6 +18,10 @@
     list-style-type: decimal;
 		padding-left: 40px;
   }
+
+	.underlined_link {
+		text-decoration: underline;
+	}
 </style>
 
 <div class="flex flex-col items-center flex-grow h-full w-full overflow-auto mb-20 lg:mb-0">

@@ -29,6 +29,25 @@
     }
   }
 
+  const renderer = {
+    heading(text, level) {
+      const escapedText = text.toLowerCase().replace(/[^\w]+/g, '-');
+
+      return `
+        <h${level}>
+          <a name="${escapedText}" class="anchor" href="#${escapedText}">
+            <span class="header-link"></span>
+          </a>
+          ${text}
+        </h${level}>`;
+    },
+    link(href, title, text) {
+      return `<a href="/#${href}" title="${title}" class="underlined_link">${text}</a>`;
+    },
+  };
+
+  marked.use({ renderer });
+
   let document = "";
   const getDocument = async () => {
     const response = await fetch(`/collections/recipes/${id}/${tab}.md`);
@@ -131,7 +150,7 @@
           {#if tab === "overview"}
             <div class="w-full flex flex-col justify-center items-center">
               <div
-                class="flex flex-wrap w-full xl:w-1/2 md:w-4/6 sm:w-5/6"
+                class="flex flex-wrap w-full"
                 in:fade
               >
                 <div class="w-5/6 sm:w-1/2 p-6">
@@ -148,7 +167,7 @@
               </div>
             </div>
           {:else}
-            <div class="w-full p-6 space-y-6">
+            <div class="w-full p-6 space-y-6 recipe-links">
               {@html document}
             </div>
           {/if}

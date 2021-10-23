@@ -1,6 +1,6 @@
 # Notes
 
-Serve with [Mongolian Beef](/#/recipes/instant-pot-mongolian-beef), Orange chicken, or any Asian entree!
+Serve with [Mongolian Beef](/recipes/instant-pot-mongolian-beef), Orange chicken, or any Asian entree!
 
 ## For variety
 - Use the whole onion for extra texture.
