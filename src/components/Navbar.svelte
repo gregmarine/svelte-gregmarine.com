@@ -49,7 +49,7 @@
 {/if}
 
 <!-- Navbar -->
-<div class="navbar flex-none shadow-lg bg-neutral text-neutral-content rounded-box w-full fixed bottom-0 top-auto lg:bottom-auto lg:top-0">
+<div class="navbar flex-none shadow-lg bg-neutral text-neutral-content rounded-box w-full fixed bottom-auto top-0">
 	<div class="px-2 mx-2 navbar-start">
 		<span class="text-lg font-bold">
 			{ $pageTitle }
@@ -73,7 +73,7 @@
 	</div>
 </div>
 
-<div class="text-xs uppercase breadcrumbs inset-6 fixed bottom-16 top-auto lg:bottom-auto lg:top-16">
+<div class="text-xs uppercase breadcrumbs inset-6 fixed bottom-auto top-16">
   <ul>
     <li>
       <a href="/" use:link>home</a>

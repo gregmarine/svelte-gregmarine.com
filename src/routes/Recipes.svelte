@@ -69,7 +69,7 @@
 </script>
 
 {#if id === ""}
-  <div class="container mx-auto flex flex-wrap lg:pt-24" in:fade|local>
+  <div class="container mx-auto flex flex-wrap pt-24" in:fade|local>
     <h1 class="w-full my-2 text-5xl font-bold leading-tight text-center">
       Recipes
     </h1>
@@ -125,7 +125,7 @@
   </div>
 {:else}
   {#if doc}
-    <div class="container mx-auto flex flex-wrap lg:pt-24" in:fade|local>
+    <div class="container mx-auto flex flex-wrap pt-24" in:fade|local>
       <h1 class="w-full my-2 text-3xl font-bold leading-tight text-center">
         {doc.title}
       </h1>

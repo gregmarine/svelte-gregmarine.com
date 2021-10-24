@@ -12,7 +12,7 @@
 <div in:fade|local>
 
   <!--Hero-->
-  <div class="pt-12 lg:pt-24">
+  <div class="pt-12 pt-24">
     <div
       class="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center"
     >
