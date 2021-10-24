@@ -4,19 +4,31 @@
   import xss from "xss";
   import marked from "marked";
 
-  import { pageTitle, recipes } from "../stores/stores.js";
+  import { pageTitle, collectionName, documentName, recipes } from "../stores/stores.js";
 
   pageTitle.set("Recipes");
+  collectionName.set("recipes");
+  documentName.set("");
 
   export let params = {};
 
   let id = "";
   let tab = "overview";
+  let doc;
+
   $: {
     id = "";
     if (params && params.id) {
       if (params.id) {
         id = params.id;
+
+        $recipes.find(element => {
+          if (element.id === id) {
+            documentName.set(element.title);
+            doc = element;
+            return true;
+          }
+        });
       }
 
       if (params.tab) {
@@ -112,67 +124,65 @@
     {/each}
   </div>
 {:else}
-  {#each $recipes as doc}
-    {#if doc.id === id}
-      <div class="container mx-auto flex flex-wrap lg:pt-24" in:fade|local>
-        <h1 class="w-full my-2 text-3xl font-bold leading-tight text-center">
-          {doc.title}
-        </h1>
-      </div>
+  {#if doc}
+    <div class="container mx-auto flex flex-wrap lg:pt-24" in:fade|local>
+      <h1 class="w-full my-2 text-3xl font-bold leading-tight text-center">
+        {doc.title}
+      </h1>
+    </div>
 
-      <div class="w-full flex flex-col justify-center items-center">
-        <div class="flex flex-wrap w-full xl:w-1/2 md:w-4/6 sm:w-5/6" in:fade>
-          <div class="tabs">
-            <a
-              href="/recipes/{doc.id}/overview"
-              class="tab tab-lifted {tab === 'overview' ? 'tab-active' : ''}"
-              use:link>Overview</a
-            >
-            <a
-              href="/recipes/{doc.id}/ingredients"
-              class="tab tab-lifted {tab === 'ingredients' ? 'tab-active' : ''}"
-              use:link>Ingredients</a
-            >
-            <a
-              href="/recipes/{doc.id}/instructions"
-              class="tab tab-lifted {tab === 'instructions'
-                ? 'tab-active'
-                : ''}"
-              use:link>Instructions</a
-            >
-            <a
-              href="/recipes/{doc.id}/notes"
-              class="tab tab-lifted {tab === 'notes' ? 'tab-active' : ''}"
-              use:link>Notes</a
-            >
-          </div>
+    <div class="w-full flex flex-col justify-center items-center">
+      <div class="flex flex-wrap w-full xl:w-1/2 md:w-4/6 sm:w-5/6" in:fade>
+        <div class="tabs">
+          <a
+            href="/recipes/{doc.id}/overview"
+            class="tab tab-lifted {tab === 'overview' ? 'tab-active' : ''}"
+            use:link>Overview</a
+          >
+          <a
+            href="/recipes/{doc.id}/ingredients"
+            class="tab tab-lifted {tab === 'ingredients' ? 'tab-active' : ''}"
+            use:link>Ingredients</a
+          >
+          <a
+            href="/recipes/{doc.id}/instructions"
+            class="tab tab-lifted {tab === 'instructions'
+              ? 'tab-active'
+              : ''}"
+            use:link>Instructions</a
+          >
+          <a
+            href="/recipes/{doc.id}/notes"
+            class="tab tab-lifted {tab === 'notes' ? 'tab-active' : ''}"
+            use:link>Notes</a
+          >
+        </div>
 
-          {#if tab === "overview"}
-            <div class="w-full flex flex-col justify-center items-center">
-              <div
-                class="flex flex-wrap w-full"
-                in:fade
-              >
-                <div class="w-5/6 sm:w-1/2 p-6">
-                  <p class="mb-8">
-                    {doc.text}
-                  </p>
-                </div>
-                <div class="w-full sm:w-1/2 p-6">
-                  <img
-                    alt={doc.title}
-                    src="/collections/recipes/{doc.id}/image.webp"
-                  />
-                </div>
+        {#if tab === "overview"}
+          <div class="w-full flex flex-col justify-center items-center">
+            <div
+              class="flex flex-wrap w-full"
+              in:fade
+            >
+              <div class="w-5/6 sm:w-1/2 p-6">
+                <p class="mb-8">
+                  {doc.text}
+                </p>
+              </div>
+              <div class="w-full sm:w-1/2 p-6">
+                <img
+                  alt={doc.title}
+                  src="/collections/recipes/{doc.id}/image.webp"
+                />
               </div>
             </div>
-          {:else}
-            <div class="w-full p-6 space-y-6 recipe-links">
-              {@html document}
-            </div>
-          {/if}
-        </div>
+          </div>
+        {:else}
+          <div class="w-full p-6 space-y-6 recipe-links">
+            {@html document}
+          </div>
+        {/if}
       </div>
-    {/if}
-  {/each}
+    </div>
+  {/if}
 {/if}

@@ -2,27 +2,34 @@
   import { fade } from "svelte/transition";
   import { link } from "svelte-spa-router";
 
-  import { pageTitle, dadjokes } from "../stores/stores.js";
+  import { pageTitle, collectionName, documentName, dadjokes } from "../stores/stores.js";
 
   pageTitle.set("Dad Jokes");
+  collectionName.set("dadjokes");
+  documentName.set("");
 
   export let params = {};
 
   let id = "";
+  let doc;
+
   $: {
     id = "";
     if (params && params.id) {
       id = params.id;
-      //getDocument();
+
+      $dadjokes.find(element => {
+        if (element.id === id) {
+          documentName.set(element.title);
+          doc = element;
+          return true;
+        }
+      });
+    } else {
+      documentName.set("");
+      doc = null;
     }
   }
-
-  // let document = "";
-  /* const getDocument = async () => {
-    const response = await fetch(`/collections/zen/${id}/document.md`);
-    const data = await response.text();
-    document = marked(xss(data));
-  } */
 </script>
 
 {#if id === ""}
@@ -78,43 +85,41 @@
     {/each}
   </div>
 {:else}
-  {#each $dadjokes as doc}
-    {#if doc.id === id}
-      <div class="container mx-auto flex flex-wrap lg:pt-24" in:fade|local>
-        <h1 class="w-full my-2 text-3xl font-bold leading-tight text-center">
-          {doc.title}
-        </h1>
-      </div>
+  {#if doc}
+    <div class="container mx-auto flex flex-wrap lg:pt-24" in:fade|local>
+      <h1 class="w-full my-2 text-3xl font-bold leading-tight text-center">
+        {doc.title}
+      </h1>
+    </div>
 
-      <div class="w-full flex flex-col justify-center items-center">
-        <div class="w-full xl:w-1/2 md:w-4/6 sm:w-5/6" in:fade>
-          <div
-            class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow"
-          >
-            <div class="w-5/6 sm:w-1/2 p-6">
-              <p class="text-gray-600 mb-8">
-                {doc.setup}
-              </p>
-            </div>
-            <div class="w-5/6 sm:w-1/2 p-6">
-              <p class="text-gray-600 mb-8">
-                {doc.punchline}
-              </p>
-            </div>
-            <div class="w-full embed-container">
-              <iframe
-                src="https://www.youtube.com/embed/{doc.youtube}"
-                title="YouTube video player"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
-              />
-            </div>
+    <div class="w-full flex flex-col justify-center items-center">
+      <div class="w-full xl:w-1/2 md:w-4/6 sm:w-5/6" in:fade>
+        <div
+          class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow"
+        >
+          <div class="w-5/6 sm:w-1/2 p-6">
+            <p class="text-gray-600 mb-8">
+              {doc.setup}
+            </p>
+          </div>
+          <div class="w-5/6 sm:w-1/2 p-6">
+            <p class="text-gray-600 mb-8">
+              {doc.punchline}
+            </p>
+          </div>
+          <div class="w-full embed-container">
+            <iframe
+              src="https://www.youtube.com/embed/{doc.youtube}"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            />
           </div>
         </div>
       </div>
-    {/if}
-  {/each}
+    </div>
+  {/if}
 {/if}
 
 <style>

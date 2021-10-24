@@ -1,7 +1,7 @@
 <script>
   import { fade } from 'svelte/transition';
 	import { link } from 'svelte-spa-router';
-  import { pageTitle } from "../stores/stores.js";
+  import { pageTitle, collectionName, documentName } from "../stores/stores.js";
 
   let showMenu = false;
 
@@ -71,4 +71,26 @@
       </svg>
 		</button>
 	</div>
+</div>
+
+<div class="text-xs uppercase breadcrumbs inset-6 fixed bottom-16 top-auto lg:bottom-auto lg:top-16">
+  <ul>
+    <li>
+      <a href="/" use:link>home</a>
+    </li>
+    {#if $collectionName !== ''}
+      {#if $documentName !== ''}
+        <li>
+          <a href="/{ $collectionName }" use:link>{ $collectionName }</a>
+        </li>
+      {:else}
+        <li>
+          { $collectionName }
+        </li>
+      {/if}
+    {/if}
+    {#if $documentName !== ''}
+      <li>{ $documentName }</li>
+    {/if}
+  </ul>
 </div>

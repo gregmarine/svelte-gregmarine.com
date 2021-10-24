@@ -4,18 +4,34 @@
   import xss from "xss";
   import marked from "marked";
 
-  import { pageTitle, blog } from "../stores/stores.js";
+  import { pageTitle, collectionName, documentName, blog } from "../stores/stores.js";
 
   pageTitle.set("Blog");
+  collectionName.set("blog");
+  documentName.set("");
 
   export let params = {};
 
   let id = "";
+  let doc;
+
   $: {
     id = "";
     if (params && params.id) {
       id = params.id;
+
+      $blog.find(element => {
+        if (element.id === id) {
+          documentName.set(element.title);
+          doc = element;
+          return true;
+        }
+      });
+
       getDocument();
+    } else {
+      documentName.set("");
+      doc = null;
     }
   }
 
@@ -77,24 +93,22 @@
     {/each}
   </div>
 {:else}
-  {#each $blog as doc}
-    {#if doc.id === id}
-      <div class="container mx-auto flex flex-wrap lg:pt-24" in:fade|local>
-        <h1 class="w-full my-2 text-3xl font-bold leading-tight text-center">
-          {doc.title}
-        </h1>
-      </div>
+  {#if doc}
+    <div class="container mx-auto flex flex-wrap lg:pt-24" in:fade|local>
+      <h1 class="w-full my-2 text-3xl font-bold leading-tight text-center">
+        {doc.title}
+      </h1>
+    </div>
 
-      <div class="w-full flex flex-col justify-center items-center">
-        <div class="flex flex-wrap w-full xl:w-1/2 md:w-4/6 sm:w-5/6" in:fade>
-          <p class="w-full p-6 space-y-6">
-            {doc.text}
-          </p>
-          <div class="w-full p-6 space-y-6">
-            {@html document}
-          </div>
+    <div class="w-full flex flex-col justify-center items-center">
+      <div class="flex flex-wrap w-full xl:w-1/2 md:w-4/6 sm:w-5/6" in:fade>
+        <p class="w-full p-6 space-y-6">
+          {doc.text}
+        </p>
+        <div class="w-full p-6 space-y-6">
+          {@html document}
         </div>
       </div>
-    {/if}
-  {/each}
+    </div>
+  {/if}
 {/if}

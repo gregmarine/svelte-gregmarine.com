@@ -1,6 +1,8 @@
 import { readable, writable } from 'svelte/store';
 
 export const pageTitle = writable('Home');
+export const collectionName = writable('');
+export const documentName = writable('');
 
 export const dadjokes = readable([], function (set) {
   const fetchDadJokeIndex = async () => {

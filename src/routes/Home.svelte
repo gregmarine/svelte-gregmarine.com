@@ -2,9 +2,11 @@
   import { fade } from 'svelte/transition';
 	import { link } from 'svelte-spa-router';
 
-  import { pageTitle, zen, dadjokes, blog } from "../stores/stores.js";
+  import { pageTitle, collectionName, documentName, zen, dadjokes, blog } from "../stores/stores.js";
 
   pageTitle.set("Greg Marine");
+  collectionName.set("");
+  documentName.set("");
 </script>
 
 <div in:fade|local>
