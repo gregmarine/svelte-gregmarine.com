@@ -33,21 +33,6 @@
   ];
 </script>
 
-<!-- Menu -->
-{#if showMenu}
-<div class="py-4 fixed right-0 bottom-16" transition:fade>
-  <ul class="menu py-3 shadow-lg bg-base-100 rounded-box">
-    {#each menuItems as item}
-    <li>
-      <a href={item.path} on:click={toggleMenu} use:link>
-				{item.name}
-			</a>
-    </li>
-    {/each}
-  </ul>
-</div>
-{/if}
-
 <!-- Navbar -->
 <div class="navbar flex-none shadow-lg bg-neutral text-neutral-content rounded-box w-full fixed bottom-auto top-0">
 	<div class="px-2 mx-2 navbar-start">
@@ -73,6 +58,22 @@
 	</div>
 </div>
 
+<!-- Menu -->
+{#if showMenu}
+<div class="py-4 fixed right-0 top-16" transition:fade>
+  <ul class="menu py-3 shadow-lg bg-base-100 rounded-box">
+    {#each menuItems as item}
+    <li>
+      <a href={item.path} on:click={toggleMenu} use:link>
+				{item.name}
+			</a>
+    </li>
+    {/each}
+  </ul>
+</div>
+{/if}
+
+<!-- Breadcrumbs -->
 <div class="text-xs uppercase breadcrumbs inset-6 fixed bottom-auto top-16">
   <ul>
     <li>
