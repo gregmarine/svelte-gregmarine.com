@@ -142,25 +142,21 @@
 
       <div class="container mx-auto flex flex-wrap pt-4 pb-12">
 
-      {#each $zen.slice(0, 3) as zenDoc}
-        <div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
-          <div
-            class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow"
-          >
-            <a
-              href="/zen/{zenDoc.id}"
-              class="flex flex-wrap no-underline hover:no-underline"
-              use:link
-            >
-              <div class="w-full font-bold text-xl text-gray-800 px-6">
-                {zenDoc.title}
-              </div>
-              <p class="text-gray-800 text-base px-6 mb-5">
-                {zenDoc.text}
-              </p>
-            </a>
+      {#each $zen.slice(0, 3) as doc}
+      <div class="flex md:w-1/2 lg:w-1/3 p-2" in:fade|local>
+        <div class="card bordered shadow-lg image-full">
+          <div class="card-body">
+            <h2 class="card-title">{doc.title}</h2>
+            <p>{doc.text}</p>
+            <div class="card-actions">
+              <a class="btn btn-primary" href="/zen/{doc.id}" use:link>Read More</a>
+            </div>
           </div>
+          <figure>
+            <img alt={doc.title} src="/collections/zen/{doc.id}/image.webp" />
+          </figure>
         </div>
+      </div>
       {/each}
 
       </div>
