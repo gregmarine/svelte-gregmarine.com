@@ -80,47 +80,23 @@
   </div>
 {:else}
   {#if doc}
-    <div class="container mx-auto flex flex-wrap pt-24" in:fade|local>
-      <h1 class="w-full my-2 text-3xl font-bold leading-tight text-center">
-        {doc.title}
-      </h1>
-
-      <div class="w-full flex flex-col justify-center items-center">
-        <ion-buttons>
-          {#if doc.twitter}
-            <ion-button fill="clear" href={doc.twitter} target="_blank">
-              <ion-icon name="logo-twitter" />
-            </ion-button>
-          {/if}
-          {#if doc.facebook}
-            <ion-button fill="clear" href={doc.facebook} target="_blank">
-              <ion-icon name="logo-facebook" />
-            </ion-button>
-          {/if}
-          {#if doc.instagram}
-            <ion-button fill="clear" href={doc.instagram} target="_blank">
-              <ion-icon name="logo-instagram" />
-            </ion-button>
-          {/if}
-        </ion-buttons>
-      </div>
-    </div>
-
-    <div class="w-full flex flex-col justify-center items-center">
-      <div class="flex flex-wrap w-full xl:w-1/2 md:w-4/6 sm:w-5/6" in:fade>
-        <div class="w-5/6 sm:w-1/2 p-6">
-          <p class="mb-8">
-            {doc.text}
-          </p>
-        </div>
-        <div class="w-full sm:w-1/2 p-6">
-          <img alt={doc.title} src="/collections/zen/{doc.id}/image.webp" />
-        </div>
-
-        <div class="w-full p-6 space-y-6">
-          {@html document}
+  <div class="container mx-auto w-full flex flex-col items-center pt-28 pb-12" in:fade|local>
+    <div class="flex-1 card lg:card-side lg:h-64 md:w-2/3 xl:w-3/4">
+      <figure>
+        <img class="h-full" alt={doc.title} src="/collections/zen/{doc.id}/image.webp" />
+      </figure> 
+      <div class="card-body">
+        <h2 class="card-title">{doc.title}</h2> 
+        <p>{doc.text}</p> 
+        <div class="card-actions">
+          
         </div>
       </div>
+    </div> 
+
+    <div class="flex-1 lg:h-64 md:w-2/3 xl:w-3/4 p-6 space-y-6">
+      {@html document}
     </div>
+  </div>
   {/if}
 {/if}
