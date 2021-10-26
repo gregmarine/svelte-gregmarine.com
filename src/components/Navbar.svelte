@@ -35,7 +35,7 @@
 
 <!-- Navbar -->
 <div
-  class="navbar flex-none shadow-lg bg-neutral text-neutral-content rounded-box w-full fixed bottom-auto top-0"
+  class="navbar flex-none shadow-lg bg-neutral text-neutral-content rounded-box w-full fixed bottom-auto top-0 z-50"
 >
   <div class="px-2 mx-2 navbar-start">
     <span class="text-lg font-bold">
@@ -72,7 +72,7 @@
 
 <!-- Menu -->
 {#if showMenu}
-  <div class="py-4 fixed right-0 top-16" transition:fade>
+  <div class="py-4 fixed right-0 top-12 z-40" transition:fade>
     <ul class="menu py-3 shadow-lg bg-base-100 rounded-box">
       {#each menuItems as item}
         <li>
@@ -87,7 +87,7 @@
 
 <!-- Breadcrumbs -->
 <div
-  class="text-xs uppercase breadcrumbs left-6 right-6 pl-2 pr-2 rounded shadow-lg fixed bottom-auto top-16 bg-white dark:bg-gray-700 bg-opacity-75 text-black dark:text-white"
+  class="text-xs uppercase breadcrumbs left-6 right-6 pl-2 pr-2 rounded shadow-lg fixed bottom-auto top-16 bg-white dark:bg-gray-700 bg-opacity-75 text-black dark:text-white z-30"
 >
   <ul>
     <li>

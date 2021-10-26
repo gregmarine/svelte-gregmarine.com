@@ -62,37 +62,20 @@
     </h2>
 
     {#each $zen as doc}
-      <article
-        class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink"
-        in:fade|local
-      >
-        <div
-          class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow"
-        >
-          <a
-            href="/zen/{doc.id}"
-            class="flex flex-wrap no-underline hover:no-underline"
-            use:link
-          >
-            <p class="w-full text-gray-600 text-l md:text-xl px-6 pt-6">
-              {doc.title}
-            </p>
-          </a>
-
-          <a
-            href="/zen/{doc.id}"
-            class="flex flex-wrap no-underline hover:no-underline"
-            use:link
-          >
-            <p class="w-full text-gray-600 text-xs md:text-sm px-6 py-6">
-              {doc.text}
-            </p>
-            <div class="object-bottom px-6 pb-6">
-              <img alt={doc.title} src="/collections/zen/{doc.id}/image.webp" />
-            </div>
-          </a>
+    <div class="flex md:w-1/2 lg:w-1/3 xl:w-1/4 p-2" in:fade|local>
+      <div class="card bordered shadow-lg image-full">
+        <div class="card-body">
+          <h2 class="card-title">{doc.title}</h2>
+          <p>{doc.text}</p>
+          <div class="card-actions">
+            <button class="btn btn-primary">Read More</button>
+          </div>
         </div>
-      </article>
+        <figure>
+          <img alt={doc.title} src="/collections/zen/{doc.id}/image.webp" />
+        </figure>
+      </div>
+    </div>
     {/each}
   </div>
 {:else}

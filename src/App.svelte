@@ -24,8 +24,8 @@
 	}
 </style>
 
+<Navbar/>
+
 <div class="flex flex-col items-center flex-grow h-full w-full overflow-auto mb-20 lg:mb-0">
 	<Router {routes} restoreScrollState={true} />
 </div>
-
-<Navbar/>
