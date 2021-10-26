@@ -68,7 +68,7 @@
           <h2 class="card-title">{doc.title}</h2>
           <p>{doc.text}</p>
           <div class="card-actions">
-            <button class="btn btn-primary">Read More</button>
+            <a class="btn btn-primary" href="/zen/{doc.id}" use:link>Read More</a>
           </div>
         </div>
         <figure>
