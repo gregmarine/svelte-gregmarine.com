@@ -38,7 +38,7 @@
   class="navbar flex-none shadow-lg bg-neutral text-neutral-content rounded-box w-full fixed bottom-auto top-0 z-50"
 >
   <div class="px-2 mx-2 navbar-start">
-    <p class="text-lg font-bold">
+    <p class="text-sm md:text-lg font-bold">
       {#if $documentName !== ""}
         <a href="/{$collectionName}" use:link>{$pageTitle}</a>
       {:else}
@@ -49,7 +49,7 @@
   {#if $documentName !== ""}
     <div class="px-2 mx-2 navbar-center flex">
       <div class="flex items-stretch">
-        <p class="font-bold">{$documentName}</p>
+        <p class="text-sm md:text-lg font-bold">{$documentName}</p>
       </div>
     </div>
   {:else}
