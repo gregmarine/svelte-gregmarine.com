@@ -38,33 +38,31 @@
   class="navbar flex-none shadow-lg bg-neutral text-neutral-content rounded-box w-full fixed bottom-auto top-0 z-50"
 >
   <div class="px-2 mx-2 navbar-start">
-    <div class="text-lg font-bold breadcrumbs">
-      <ul>
-        <li>
-
-          {#if $documentName !== ""}
-          <a href="/{$collectionName}" use:link>{$pageTitle}</a>
-          {:else}
-          {$pageTitle}
-          {/if}
-        </li>
-        {#if $documentName !== ""}
-        <li>
-          {$documentName}
-        </li>
-        {/if}
-      </ul>
-    </div>
+    <p class="text-lg font-bold">
+      {#if $documentName !== ""}
+        <a href="/{$collectionName}" use:link>{$pageTitle}</a>
+      {:else}
+        {$pageTitle}
+      {/if}
+    </p>
   </div>
-  <div class="hidden px-2 mx-2 navbar-center md:flex">
-    <div class="flex items-stretch">
-      {#each menuItems as item}
-        <a href={item.path} class="btn btn-ghost btn-sm rounded-btn" use:link>
-          {item.name}
-        </a>
-      {/each}
+  {#if $documentName !== ""}
+    <div class="px-2 mx-2 navbar-center flex">
+      <div class="flex items-stretch">
+        <p class="font-bold">{$documentName}</p>
+      </div>
     </div>
-  </div>
+  {:else}
+    <div class="hidden px-2 mx-2 navbar-center md:flex">
+      <div class="flex items-stretch">
+        {#each menuItems as item}
+          <a href={item.path} class="btn btn-ghost btn-sm rounded-btn" use:link>
+            {item.name}
+          </a>
+        {/each}
+      </div>
+    </div>
+  {/if}
   <div class="navbar-end">
     <button class="btn btn-square btn-ghost md:hidden" on:click={toggleMenu}>
       <svg
