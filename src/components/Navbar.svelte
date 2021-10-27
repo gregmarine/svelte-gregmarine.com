@@ -38,9 +38,23 @@
   class="navbar flex-none shadow-lg bg-neutral text-neutral-content rounded-box w-full fixed bottom-auto top-0 z-50"
 >
   <div class="px-2 mx-2 navbar-start">
-    <span class="text-lg font-bold">
-      {$pageTitle}
-    </span>
+    <div class="text-lg font-bold breadcrumbs">
+      <ul>
+        <li>
+
+          {#if $documentName !== ""}
+          <a href="/{$collectionName}" use:link>{$pageTitle}</a>
+          {:else}
+          {$pageTitle}
+          {/if}
+        </li>
+        {#if $documentName !== ""}
+        <li>
+          {$documentName}
+        </li>
+        {/if}
+      </ul>
+    </div>
   </div>
   <div class="hidden px-2 mx-2 navbar-center md:flex">
     <div class="flex items-stretch">
