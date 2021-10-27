@@ -84,28 +84,3 @@
     </ul>
   </div>
 {/if}
-
-<!-- Breadcrumbs -->
-<div
-  class="text-xs uppercase breadcrumbs left-6 right-6 pl-2 pr-2 rounded shadow-lg fixed bottom-auto top-16 bg-white dark:bg-gray-700 bg-opacity-75 text-black dark:text-white z-30"
->
-  <ul>
-    <li>
-      <a href="/" use:link>home</a>
-    </li>
-    {#if $collectionName !== ""}
-      {#if $documentName !== ""}
-        <li>
-          <a href="/{$collectionName}" use:link>{$collectionName}</a>
-        </li>
-      {:else}
-        <li>
-          {$collectionName}
-        </li>
-      {/if}
-    {/if}
-    {#if $documentName !== ""}
-      <li>{$documentName}</li>
-    {/if}
-  </ul>
-</div>
