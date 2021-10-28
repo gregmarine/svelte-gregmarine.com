@@ -44,13 +44,7 @@
 </script>
 
 {#if id === ""}
-  <div class="container mx-auto flex flex-wrap pt-24" in:fade|local>
-    <h1 class="w-full my-2 text-5xl font-bold leading-tight text-center">
-      Zen
-    </h1>
-  </div>
-
-  <div class="container mx-auto flex flex-wrap pt-4 pb-12" in:fade|local>
+  <div class="container mx-auto flex flex-wrap pt-24 pb-12" in:fade|local>
     <div class="w-full mb-4">
       <div class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t" />
     </div>
@@ -62,41 +56,37 @@
     </h2>
 
     {#each $zen as doc}
-    <div class="flex md:w-1/2 lg:w-1/3 xl:w-1/4 p-2" in:fade|local>
-      <div class="card bordered shadow-lg image-full">
-        <div class="card-body">
-          <h2 class="card-title">{doc.title}</h2>
-          <p>{doc.text}</p>
-          <div class="card-actions">
-            <a class="btn btn-primary" href="/zen/{doc.id}" use:link>Read More</a>
+      <div class="flex md:w-1/2 lg:w-1/3 xl:w-1/4 p-2" in:fade|local>
+        <div class="card bordered shadow-lg image-full">
+          <div class="card-body">
+            <h2 class="card-title">{doc.title}</h2>
+            <p>{doc.text}</p>
+            <div class="card-actions">
+              <a class="btn btn-primary" href="/zen/{doc.id}" use:link>Read More</a>
+            </div>
           </div>
+          <figure>
+            <img alt={doc.title} src="/collections/zen/{doc.id}/image.webp" />
+          </figure>
         </div>
-        <figure>
-          <img alt={doc.title} src="/collections/zen/{doc.id}/image.webp" />
-        </figure>
       </div>
-    </div>
     {/each}
   </div>
 {:else}
   {#if doc}
-  <div class="container mx-auto w-full flex flex-col items-center pt-28 pb-12" in:fade|local>
-    <div class="flex-1 card lg:card-side lg:h-64 md:w-2/3 xl:w-3/4">
-      <figure>
-        <img class="h-full" alt={doc.title} src="/collections/zen/{doc.id}/image.webp" />
-      </figure> 
-      <div class="card-body">
-        <h2 class="card-title">{doc.title}</h2> 
-        <p>{doc.text}</p> 
-        <div class="card-actions">
-          
+    <div class="container mx-auto w-full flex flex-col items-center pt-24 pb-12" in:fade|local>
+      <div class="flex-1 card lg:card-side lg:h-64 md:w-2/3 xl:w-3/4">
+        <figure>
+          <img class="h-full" alt={doc.title} src="/collections/zen/{doc.id}/image.webp" />
+        </figure> 
+        <div class="card-body">
+          <p class="italic">{doc.text}</p>
         </div>
-      </div>
-    </div> 
+      </div> 
 
-    <div class="flex-1 lg:h-64 md:w-2/3 xl:w-3/4 p-6 space-y-6">
-      {@html document}
+      <div class="flex-1 lg:h-64 md:w-2/3 xl:w-3/4 p-6 space-y-6">
+        {@html document}
+      </div>
     </div>
-  </div>
   {/if}
 {/if}

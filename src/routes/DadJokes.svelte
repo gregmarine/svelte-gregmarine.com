@@ -33,13 +33,7 @@
 </script>
 
 {#if id === ""}
-  <div class="container mx-auto flex flex-wrap pt-24" in:fade|local>
-    <h1 class="w-full my-2 text-5xl font-bold leading-tight text-center">
-      Dad Jokes
-    </h1>
-  </div>
-
-  <div class="container mx-auto flex flex-wrap pt-4 pb-12" in:fade|local>
+  <div class="container mx-auto flex flex-wrap pt-24 pb-12" in:fade|local>
     <div class="w-full mb-4">
       <div class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t" />
     </div>
@@ -51,71 +45,47 @@
     </h2>
 
     {#each $dadjokes as doc}
-      <article
-        class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink"
-        in:fade|local
-      >
-        <div
-          class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow"
-        >
-          <a
-            href="/dadjokes/{doc.id}"
-            class="flex flex-wrap no-underline hover:no-underline"
-            use:link
-          >
-            <p class="w-full text-gray-600 text-l md:text-xl px-6 pt-6">
-              {doc.title}
-            </p>
-          </a>
-
-          <a
-            href="/dadjokes/{doc.id}"
-            class="flex flex-wrap no-underline hover:no-underline"
-            use:link
-          >
-            <p class="w-full text-gray-600 text-xs md:text-sm px-6 py-6">
+      <div class="flex md:w-1/2 lg:w-1/3 xl:w-1/4 p-2" in:fade|local>
+        <div class="card bordered shadow-lg image-full">
+          <div class="card-body">
+            <h2 class="card-title">{doc.title}</h2>
+            <p class="w-full text-xl md:text-lg px-6 py-6">
               {doc.setup}
             </p>
-            <p class="w-full text-gray-600 text-xs md:text-sm px-6 py-6">
+            <p class="w-full text-2xl md:text-lg px-6 py-6">
               {doc.punchline}
             </p>
-          </a>
+            <div class="card-actions">
+              <a class="btn btn-primary" href="/dadjokes/{doc.id}" use:link>Watch Video</a>
+            </div>
+          </div>
+          <figure>
+            <img alt={doc.title} src="/collections/dadjokes/image.webp" />
+          </figure>
         </div>
-      </article>
+      </div>
     {/each}
   </div>
 {:else}
   {#if doc}
-    <div class="container mx-auto flex flex-wrap pt-24" in:fade|local>
-      <h1 class="w-full my-2 text-3xl font-bold leading-tight text-center">
-        {doc.title}
-      </h1>
-    </div>
-
-    <div class="w-full flex flex-col justify-center items-center">
-      <div class="w-full xl:w-1/2 md:w-4/6 sm:w-5/6" in:fade>
-        <div
-          class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow"
-        >
-          <div class="w-5/6 sm:w-1/2 p-6">
-            <p class="text-gray-600 mb-8">
-              {doc.setup}
-            </p>
-          </div>
-          <div class="w-5/6 sm:w-1/2 p-6">
-            <p class="text-gray-600 mb-8">
-              {doc.punchline}
-            </p>
-          </div>
-          <div class="w-full embed-container">
-            <iframe
-              src="https://www.youtube.com/embed/{doc.youtube}"
-              title="YouTube video player"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-            />
-          </div>
+    <div class="container mx-auto w-full flex flex-col items-center pt-24 pb-12" in:fade|local>
+      <div class="card text-center shadow-2xl sm:w-2/3 md:w-1/2">
+        <figure class="px-10 pt-10 embed-container">
+          <iframe
+            src="https://www.youtube.com/embed/{doc.youtube}"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          />
+        </figure>
+        <div class="card-body">
+          <p class="w-full text-xl md:text-lg px-6 py-6">
+            {doc.setup}
+          </p>
+          <p class="w-full text-2xl md:text-lg px-6 py-6">
+            {doc.punchline}
+          </p>
         </div>
       </div>
     </div>

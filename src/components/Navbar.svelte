@@ -1,6 +1,6 @@
 <script>
   import { fade } from "svelte/transition";
-  import { link } from "svelte-spa-router";
+  import { link, push } from "svelte-spa-router";
   import { pageTitle, collectionName, documentName } from "../stores/stores.js";
 
   let showMenu = false;
@@ -8,6 +8,8 @@
   const toggleMenu = () => {
     showMenu = !showMenu;
   };
+
+  const closeDocument = () => push(`/${$collectionName}`);
 
   const menuItems = [
     {
@@ -47,13 +49,13 @@
     </p>
   </div>
   {#if $documentName !== ""}
-    <div class="px-2 mx-2 navbar-center flex">
+    <div class="px-2 mx-2 navbar-center flex" in:fade>
       <div class="flex items-stretch">
         <p class="text-sm md:text-lg font-bold">{$documentName}</p>
       </div>
     </div>
   {:else}
-    <div class="hidden px-2 mx-2 navbar-center md:flex">
+    <div class="hidden px-2 mx-2 navbar-center md:flex" in:fade>
       <div class="flex items-stretch">
         {#each menuItems as item}
           <a href={item.path} class="btn btn-ghost btn-sm rounded-btn" use:link>
@@ -64,21 +66,29 @@
     </div>
   {/if}
   <div class="navbar-end">
-    <button class="btn btn-square btn-ghost md:hidden" on:click={toggleMenu}>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        class="inline-block w-6 h-6 stroke-current"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M4 6h16M4 12h16M4 18h16"
-        />
-      </svg>
-    </button>
+    {#if $documentName === ''}
+      <button class="btn btn-square btn-ghost md:hidden" on:click={toggleMenu}>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          class="inline-block w-6 h-6 stroke-current"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16"
+          />
+        </svg>
+      </button>
+    {:else}
+      <button class="btn btn-square btn-ghost" on:click={closeDocument} in:fade>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-6 h-6 stroke-current">   
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>                       
+        </svg>
+      </button>
+    {/if}
   </div>
 </div>
 
