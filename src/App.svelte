@@ -18,10 +18,6 @@
     list-style-type: decimal;
 		padding-left: 40px;
   }
-
-	.underlined_link {
-		text-decoration: underline;
-	}
 </style>
 
 <Navbar/>

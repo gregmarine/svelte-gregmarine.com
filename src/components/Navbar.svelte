@@ -9,7 +9,10 @@
     showMenu = !showMenu;
   };
 
-  const closeDocument = () => push(`/${$collectionName}`);
+  const closeDocument = () => {
+    documentName.set("");
+    push(`/${$collectionName}`);
+  }
 
   const menuItems = [
     {

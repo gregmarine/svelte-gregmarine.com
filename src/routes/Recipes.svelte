@@ -42,19 +42,8 @@
   }
 
   const renderer = {
-    heading(text, level) {
-      const escapedText = text.toLowerCase().replace(/[^\w]+/g, '-');
-
-      return `
-        <h${level}>
-          <a name="${escapedText}" class="anchor" href="#${escapedText}">
-            <span class="header-link"></span>
-          </a>
-          ${text}
-        </h${level}>`;
-    },
     link(href, title, text) {
-      return `<a href="/#${href}" title="${title}" class="underlined_link">${text}</a>`;
+      return `<a href="/#${href}" title="${title}" class="underline">${text}</a>`;
     },
   };
 
@@ -69,13 +58,7 @@
 </script>
 
 {#if id === ""}
-  <div class="container mx-auto flex flex-wrap pt-24" in:fade|local>
-    <h1 class="w-full my-2 text-5xl font-bold leading-tight text-center">
-      Recipes
-    </h1>
-  </div>
-
-  <div class="container mx-auto flex flex-wrap pt-4 pb-12" in:fade|local>
+  <div class="container mx-auto flex flex-wrap pt-24 pb-12" in:fade|local>
     <div class="w-full mb-4">
       <div class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t" />
     </div>
@@ -83,44 +66,24 @@
       class="w-full my-2 text-xl lg:text-2xl font-bold leading-tight text-center"
       in:fade
     >
-      Food I love to make
+      Food I Love to Make
     </h2>
 
     {#each $recipes as doc}
-      <article
-        class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink"
-        in:fade|local
-      >
-        <div
-          class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow"
-        >
-          <a
-            href="/recipes/{doc.id}"
-            class="flex flex-wrap no-underline hover:no-underline"
-            use:link
-          >
-            <p class="w-full text-gray-600 text-l md:text-xl px-6 pt-6">
-              {doc.title}
-            </p>
-          </a>
-
-          <a
-            href="/recipes/{doc.id}"
-            class="flex flex-wrap no-underline hover:no-underline"
-            use:link
-          >
-            <p class="w-full text-gray-600 text-xs md:text-sm px-6 py-6">
-              {doc.text}
-            </p>
-            <div class="object-bottom px-6 pb-6">
-              <img
-                alt={doc.title}
-                src="/collections/recipes/{doc.id}/image.webp"
-              />
+      <div class="flex md:w-1/2 lg:w-1/3 xl:w-1/4 p-2" in:fade|local>
+        <div class="card bordered shadow-lg">
+          <figure class="px-10 pt-10">
+            <img class="object-cover h-96 md:h-48 w-full rounded-lg" alt={doc.title} src="/collections/recipes/{doc.id}/image.webp" />
+          </figure>
+          <div class="card-body">
+            <h2 class="card-title">{doc.title}</h2>
+            <p class="sm:text-sm md:text-xs">{doc.text}</p>
+            <div class="card-actions">
+              <a class="btn btn-primary" href="/recipes/{doc.id}" use:link>Show Recipe</a>
             </div>
-          </a>
+          </div>
         </div>
-      </article>
+      </div>
     {/each}
   </div>
 {:else}
