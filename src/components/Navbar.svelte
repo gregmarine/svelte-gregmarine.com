@@ -114,11 +114,27 @@
   <div class="py-4 fixed right-0 top-12 z-40" transition:fade>
     <ul class="menu py-3 shadow-lg bg-base-100 rounded-box">
       {#each menuItems as item}
-        <li>
-          <a href={item.path} on:click={toggleMenu} use:link>
-            {item.name}
-          </a>
-        </li>
+        {#if $pageTitle !== ""}
+          <li>
+            <a href={item.path} class="btn btn-ghost btn-sm rounded-btn" on:click={toggleMenu} use:link>
+              {item.name}
+            </a>
+          </li>
+        {:else}
+          {#if item.name === "Home"}
+            <li>
+              <button class="btn btn-ghost btn-sm rounded-btn" on:click={toggleMenu} use:scrollto={"#home"}>
+                {item.name}
+              </button>
+            </li>
+          {:else}
+            <li>
+              <button class="btn btn-ghost btn-sm rounded-btn" on:click={toggleMenu} use:scrollto={item.path.replace("/", "#")}>
+                {item.name}
+              </button>
+            </li>
+          {/if}
+        {/if}
       {/each}
     </ul>
   </div>
