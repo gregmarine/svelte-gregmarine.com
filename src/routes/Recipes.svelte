@@ -12,8 +12,8 @@
 
   export let params = {};
 
-  let id = "";
-  let tab = "overview";
+  let id;
+  let tab;
   let doc;
 
   $: {
@@ -33,6 +33,8 @@
 
       if (params.tab) {
         tab = params.tab;
+      } else {
+        tab = "overview";
       }
 
       if (tab !== "overview") {
@@ -88,15 +90,9 @@
   </div>
 {:else}
   {#if doc}
-    <div class="container mx-auto flex flex-wrap pt-24" in:fade|local>
-      <h1 class="w-full my-2 text-3xl font-bold leading-tight text-center">
-        {doc.title}
-      </h1>
-    </div>
-
-    <div class="w-full flex flex-col justify-center items-center">
+    <div class="w-full flex flex-col justify-center items-center pt-24">
       <div class="flex flex-wrap w-full xl:w-1/2 md:w-4/6 sm:w-5/6" in:fade>
-        <div class="tabs">
+        <div class="tabs w-full">
           <a
             href="/recipes/{doc.id}/overview"
             class="tab tab-lifted {tab === 'overview' ? 'tab-active' : ''}"
@@ -119,6 +115,7 @@
             class="tab tab-lifted {tab === 'notes' ? 'tab-active' : ''}"
             use:link>Notes</a
           >
+          <div class="flex-1 cursor-default tab tab-lifted"></div>
         </div>
 
         {#if tab === "overview"}
@@ -141,7 +138,7 @@
             </div>
           </div>
         {:else}
-          <div class="w-full p-6 space-y-6 recipe-links">
+          <div class="w-full p-6 space-y-6">
             {@html document}
           </div>
         {/if}
