@@ -127,6 +127,12 @@
             </div>
           </div>
         {/each}
+
+        <div class="flex md:w-1/2 lg:w-1/3 p-2" in:fade|local>
+          <a class="btn btn-primary" href="/zen" use:link>
+            More Zen
+          </a>
+        </div>
       </div>
     </div>
   </section>
@@ -217,6 +223,12 @@
             </div>
           </div>
         {/each}
+
+        <div class="flex md:w-1/2 lg:w-1/3 p-2" in:fade|local>
+          <a class="btn btn-primary" href="/dadjokes" use:link>
+            More Eye Rolls
+          </a>
+        </div>
       </div>
     </div>
   </section>
@@ -255,6 +267,12 @@
             </div>
           </div>
         {/each}
+
+        <div class="flex md:w-1/2 lg:w-1/3 p-2" in:fade|local>
+          <a class="btn btn-primary" href="/blog" use:link>
+            More Musings
+          </a>
+        </div>
       </div>
     </div>
   </section>
@@ -293,6 +311,12 @@
             </div>
           </div>
         {/each}
+
+        <div class="flex md:w-1/2 lg:w-1/3 p-2" in:fade|local>
+          <a class="btn btn-primary" href="/recipes" use:link>
+            More Yum
+          </a>
+        </div>
       </div>
     </div>
   </section>
