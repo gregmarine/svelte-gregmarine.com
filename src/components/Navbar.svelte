@@ -69,9 +69,9 @@
             </a>
           {:else}
             {#if item.name === "Home"}
-              <a href={item.path} class="btn btn-ghost btn-sm rounded-btn" use:link>
-                {item.name}
-              </a>
+            <button class="btn btn-ghost btn-sm rounded-btn" use:scrollto={"#home"}>
+              {item.name}
+            </button>
             {:else}
               <button class="btn btn-ghost btn-sm rounded-btn" use:scrollto={item.path.replace("/", "#")}>
                 {item.name}

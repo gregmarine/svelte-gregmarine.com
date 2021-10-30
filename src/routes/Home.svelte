@@ -20,7 +20,7 @@
 
 <div in:fade|local>
   <!--Hero-->
-  <div class="hero min-h-screen">
+  <div id="home" class="hero min-h-screen">
     <div class="flex-col hero-content lg:flex-row-reverse">
       <img
         alt="Greg Marine headshot"
