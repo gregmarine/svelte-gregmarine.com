@@ -60,7 +60,7 @@
             </div>
           </div>
           <figure>
-            <img alt={doc.title} src="/collections/dadjokes/image.webp" />
+            <img alt={doc.title} src="/collections/dadjokes/image-01.webp" />
           </figure>
         </div>
       </div>

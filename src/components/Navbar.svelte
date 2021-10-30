@@ -1,6 +1,8 @@
 <script>
   import { fade } from "svelte/transition";
   import { link, push } from "svelte-spa-router";
+  import { scrollto } from "svelte-scrollto";
+
   import { pageTitle, collectionName, documentName } from "../stores/stores.js";
 
   let showMenu = false;
@@ -61,9 +63,21 @@
     <div class="hidden px-2 mx-2 navbar-center md:flex" in:fade>
       <div class="flex items-stretch">
         {#each menuItems as item}
-          <a href={item.path} class="btn btn-ghost btn-sm rounded-btn" use:link>
-            {item.name}
-          </a>
+          {#if $pageTitle !== ""}
+            <a href={item.path} class="btn btn-ghost btn-sm rounded-btn" use:link>
+              {item.name}
+            </a>
+          {:else}
+            {#if item.name === "Home"}
+              <a href={item.path} class="btn btn-ghost btn-sm rounded-btn" use:link>
+                {item.name}
+              </a>
+            {:else}
+              <button class="btn btn-ghost btn-sm rounded-btn" use:scrollto={item.path.replace("/", "#")}>
+                {item.name}
+              </button>
+            {/if}
+          {/if}
         {/each}
       </div>
     </div>

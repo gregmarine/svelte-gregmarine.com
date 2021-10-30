@@ -52,7 +52,7 @@
       class="w-full my-2 text-xl lg:text-2xl font-bold leading-tight text-center"
       in:fade
     >
-      Collection of My Musings
+      A Collection of My Musings
     </h2>
 
     {#each $blog as doc}
