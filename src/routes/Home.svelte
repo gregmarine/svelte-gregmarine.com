@@ -2,6 +2,7 @@
   import { fade } from "svelte/transition";
   import { link } from "svelte-spa-router";
   import { scrollto } from "svelte-scrollto";
+  import Meta from 'svelte-meta';
 
   import {
     pageTitle,
@@ -17,6 +18,13 @@
   collectionName.set("");
   documentName.set("");
 </script>
+
+<Meta
+  title="Hello there! I'm Greg!"
+  description="Zen Technologist 🧘‍♂️ Teller of Dad Jokes 🤣 Motivating a Mentally Healthier World 🙌"
+  image="/img/social.png"
+  url="https://thankful-hill-032b6aa10.azurestaticapps.net/"
+/>
 
 <div in:fade|local>
   <!--Hero-->
